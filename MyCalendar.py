@@ -9,4 +9,8 @@ class mycalendar(tk.Frame):
         import datetime
         tk.Frame.__init(self,master,cnf,**kw)
 
+        # 現在の日付を取得
+        now = datetime.datetime.now()
+
+
 
