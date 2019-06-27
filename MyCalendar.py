@@ -55,6 +55,13 @@ class mycalendar(tk.Frame):
     def create_calendar(self, year, month):
         "指定した年(year),月(month)のカレンダーウィジェットを作成する"
 
+        # ボタンがある場合は削除する（初期化）
+        try
+            for key,item in self.day.items()
+                item.destory()
+        expect:
+            pass
+
         # calendarモジュールのインスタンスを作成
         import calendar
         cal = calendar.Calendar()
@@ -77,6 +84,18 @@ class mycalendar(tk.Frame):
                 月によっては、i=41まで日付がないため、日付がないiのエラー回避が必要
                 """
                 break
+
+def vhange_month
+
+
+
+
+
+
+
+
+
+
 
 # デフォルトのボタンクラス
 class d_button(tk.Button):
