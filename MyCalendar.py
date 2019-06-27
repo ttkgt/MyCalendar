@@ -4,10 +4,10 @@ import tkinter as tk
 
 # カレンダーを作成するフレームクラス
 class mycalendar(tk.Frame):
-    def __init__(self,master=None,cnf={},**kw):
+    def __init__(self, master=None, cnf={}, **kw):
         "初期化メソッド"
         import datetime
-        tk.Frame.__init(self,master,cnf,**kw)
+        tk.Frame.__init__(self, master, cnf, **kw)
 
         # 現在の日付を取得
         now = datetime.datetime.now()
@@ -25,25 +25,25 @@ class mycalendar(tk.Frame):
         self.current_month = tk.Label(frame_top, text = self.month, font = ("",18))
         self.current_month.pack(side = "left")
         self.next_month = tk.Label(frame_top, text = ">", font = ("", 14))
-        self.next_month.pack(side = "left", pack = 10)
+        self.next_month.pack(side = "left", padx = 10)
 
         # frame_week部分の作成
         frame_week = tk.Frame(self)
         frame_week.pack()
-        button_mon = d_button(frame_week, text = "Mon")
+        button_mon = d_button(frame_week, text="Mon")
         button_mon.grid(column=0, row=0)
-        button_mon = d_button(frame_week, text = "Tue")
-        button_mon.grid(column=1, row=0)
-        button_mon = d_button(frame_week, text = "Wed")
-        button_mon.grid(column=2, row=0)
-        button_mon = d_button(frame_week, text = "Thu")
-        button_mon.grid(column=3, row=0)
-        button_mon = d_button(frame_week, text = "Fri")
-        button_mon.grid(column=4, row=0)
-        button_mon = d_button(frame_week, text = "Sat", fg = "blue")
-        button_mon.grid(column=5, row=0)
-        button_mon = d_button(frame_week, text = "San", fg = "red")
-        button_mon.grid(column=6, row=0)
+        button_tue = d_button(frame_week, text="Tue")
+        button_tue.grid(column=1, row=0)
+        button_wed = d_button(frame_week, text="Wed")
+        button_wed.grid(column=2, row=0)
+        button_thu = d_button(frame_week, text="Thu")
+        button_thu.grid(column=3, row=0)
+        button_fri = d_button(frame_week, text="Fri")
+        button_fri.grid(column=4, row=0)
+        button_sta = d_button(frame_week, text="Sat", fg="blue")
+        button_sta.grid(column=5, row=0)
+        button_san = d_button(frame_week, text="San", fg="red")
+        button_san.grid(column=6, row=0)
 
         # frame_calendar部分の作成
         self.frame_calendar = tk.Frame(self)
@@ -52,7 +52,7 @@ class mycalendar(tk.Frame):
         # 日付部分を作成するメソッドの呼び出し
         self.create_calendar(self.year, self.month)
 
-    def create_calendar(selfself, year, month):
+    def create_calendar(self, year, month):
         "指定した年(year),月(month)のカレンダーウィジェットを作成する"
 
         # calendarモジュールのインスタンスを作成
@@ -71,4 +71,22 @@ class mycalendar(tk.Frame):
                 # 日付が0でなかったら、ボタン作成
                 if days[r][c] != 0:
                     self.day[i] = d_button(self.frame_calendar, text = days[r][c])
+                    self.day[i].grid(column, row=r)
+            except:
+                """
+                月によっては、i=41まで日付がないため、日付がないiのエラー回避が必要
+                """
+                break
 
+# デフォルトクラスのボタンクラス
+class d_button(tk.Button):
+    def __init__(self, master=None, cnf={}, **kw):
+        tk.Button.__init__(self, master, cnf, **kw)
+        self.configure(font=("",14), height=2, relief="flat")
+
+# ルートフレーム定義
+root = tk.Tk()
+root.title("Calendar App")
+mycal = mycalendar(root)
+mycal.pack()
+root.mainloop()
