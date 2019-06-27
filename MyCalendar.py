@@ -18,14 +18,14 @@ class mycalendar(tk.Frame):
         # frame_top部分の作成
         frame_top = tk.Frame(self)
         frame_top.pack(pady=5)
-        self.previous_month = tk.Label(frame_top, text = "<", font = ("",14))
+        self.previous_month = tk.Label(frame_top, text="<", font=("",14))
         self.previous_month.pack(side = "left", padx = 10)
-        self.current_year = tk.Label(frame_top, text = self.year, font = ("", 18))
+        self.current_year = tk.Label(frame_top, text=self.year, font = ("",18))
         self.current_year.pack(side = "left")
-        self.current_month = tk.Label(frame_top, text = self.month, font = ("",18))
+        self.current_month = tk.Label(frame_top, text=self.month, font = ("",18))
         self.current_month.pack(side = "left")
-        self.next_month = tk.Label(frame_top, text = ">", font = ("", 14))
-        self.next_month.pack(side = "left", padx = 10)
+        self.next_month = tk.Label(frame_top, text=">", font = ("",14))
+        self.next_month.pack(side="left", padx=10)
 
         # frame_week部分の作成
         frame_week = tk.Frame(self)
@@ -71,20 +71,20 @@ class mycalendar(tk.Frame):
                 # 日付が0でなかったら、ボタン作成
                 if days[r][c] != 0:
                     self.day[i] = d_button(self.frame_calendar, text = days[r][c])
-                    self.day[i].grid(column, row=r)
+                    self.day[i].grid(column=c, row=r)
             except:
                 """
                 月によっては、i=41まで日付がないため、日付がないiのエラー回避が必要
                 """
                 break
 
-# デフォルトクラスのボタンクラス
+# デフォルトのボタンクラス
 class d_button(tk.Button):
     def __init__(self, master=None, cnf={}, **kw):
         tk.Button.__init__(self, master, cnf, **kw)
-        self.configure(font=("",14), height=2, relief="flat")
+        self.configure(font=("",14), height=2, width=4, relief="flat")
 
-# ルートフレーム定義
+# ルートフレームの定義
 root = tk.Tk()
 root.title("Calendar App")
 mycal = mycalendar(root)
