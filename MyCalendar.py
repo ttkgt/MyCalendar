@@ -85,25 +85,25 @@ class mycalendar(tk.Frame):
                 """
                 break
 
-def change_month(self, event):
-    # 押されたラベルを判定し、月の計算
-    if event.widget["text"] == "<":
-        self.month -= 1
-    else:
-        self.month += 1
+    def change_month(self, event):
+        # 押されたラベルを判定し、月の計算
+        if event.widget["text"] == "<":
+            self.month -= 1
+        else:
+            self.month += 1
 
-    #月が0、13になった時の処理
-    if self.month == 0:
-        self.year -= 1
-        self.month = 12
-    elif self.month == 13:
-        self.year += 1
-        self.month =1
-    # frame_topにある年と月のラベルを変更する。
-    self.current_year["text"] = self.year
-    self.current_month["text"] = self.month
-    # 日付部分を作成するメソッドの呼び出し
-    self.create_calendar(self.year, self.month)
+        #月が0、13になった時の処理
+        if self.month == 0:
+            self.year -= 1
+            self.month = 12
+        elif self.month == 13:
+            self.year += 1
+            self.month =1
+        # frame_topにある年と月のラベルを変更する。
+        self.current_year["text"] = self.year
+        self.current_month["text"] = self.month
+        # 日付部分を作成するメソッドの呼び出し
+        self.create_calendar(self.year, self.month)
 
 # デフォルトのボタンクラス
 class d_button(tk.Button):
